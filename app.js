@@ -1,0 +1,40 @@
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+
+app.use(
+    cors({
+      origin: [
+        "http://localhost:3000",
+       
+      ],
+  
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
+      allowedHeaders: [
+        "Content-Type",
+        "Origin",
+        "X-Requested-With",
+        "Accept",
+        "x-client-key",
+        "x-client-token",
+        "x-client-secret",
+        "Authorization",
+      ],
+      credentials: true,
+    })
+  );
+
+app.use(express.json());
+app.use(cookieParser());
+
+
+// api link
+const blogRoute = require("./routes/v1/blogs.route");
+
+
+// routes
+app.use("/api/v1/blogs", blogRoute);
+
+module.exports = app;
