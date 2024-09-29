@@ -20,11 +20,13 @@ exports.getUserInDB = async (email, password) => {
 };
 
 exports.getAllUserFromDb = async (page, limit, search) => {
-  const searchTerm = search === "undefined" ? "" : search;
+  console.log(page, limit, search);
+  const searchTerm =
+    typeof search === "undefined" || search === null ? "" : search;
+
   const regexSearch = new RegExp(searchTerm, "i");
   let query = {};
-
-  if (search) {
+  if (searchTerm) {
     query.$or = [
       { role: { $regex: regexSearch } },
       { fullName: { $regex: regexSearch } },
@@ -32,10 +34,11 @@ exports.getAllUserFromDb = async (page, limit, search) => {
     ];
   }
 
+  console.log(query);
   const result = await User.find(query)
     .sort({ fullName: "asc" })
     .limit(parseInt(limit))
     .skip((parseInt(page) - 1) * parseInt(limit));
-  const total = await User.countDocuments();
+  const total = await User.countDocuments(query);
   return { result, total };
 };

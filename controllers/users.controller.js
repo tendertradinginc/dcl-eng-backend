@@ -1,5 +1,9 @@
 const User = require("../models/User");
-const { register, getUserInDB } = require("../services/users.service");
+const {
+  register,
+  getUserInDB,
+  getAllUserFromDb,
+} = require("../services/users.service");
 const { generateToken } = require("../utils/token");
 
 // create user
@@ -57,8 +61,8 @@ exports.getUserforlogin = async (req, res) => {
 // get all user for dashbaord
 exports.getAllUser = async (req, res) => {
   try {
-    const { page, limit,search } = req.query;
-    const result = await getAllUserFromDb(page, limit,search);
+    const { page, limit, search } = req.query;
+    const result = await getAllUserFromDb(page, limit, search);
     res.status(200).json({
       status: "success",
       message: "Successfully get all Blogs",
