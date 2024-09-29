@@ -29,10 +29,12 @@ app.use(cookieParser());
 // api link
 const usersRoute = require("./routes/v1/users.route");
 const blogRoute = require("./routes/v1/blogs.route");
+const projectsRoute = require("./routes/v1/projects.route");
 
-// routes
+
 // routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
+app.use("/api/v1/projects", projectsRoute);
 
 module.exports = app;
