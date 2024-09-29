@@ -39,5 +39,4 @@ app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/projects", projectsRoute);
 app.use("/api/v1/client", clientRoute);
 
-
 module.exports = app;
