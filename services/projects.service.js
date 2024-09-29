@@ -18,10 +18,10 @@ exports.createProject = async (details) => {
 
 // get single Project for details
 
-// exports.singleProjectDetial = async (ProjectId) => {
-//   const result = await Project.findOne({ _id: ProjectId });
-//   return result;
-// };
+exports.singleProjectDetial = async (ProjectId) => {
+  const result = await Project.findOne({ _id: ProjectId });
+  return result;
+};
 
 // update Projects
 // exports.updateProjectsFromDb = async (ProjectId, data) => {
