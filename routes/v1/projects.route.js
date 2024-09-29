@@ -11,6 +11,6 @@ router
   .route("/:id")
   .get(projectController.getSingleProject)
   .delete(projectController.DeleteSingleProject)
-  // .put(projectController.updateSingleProject);
+  .put(projectController.updateSingleProject);
 
 module.exports = router;

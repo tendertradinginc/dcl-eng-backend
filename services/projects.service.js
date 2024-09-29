@@ -24,10 +24,10 @@ exports.singleProjectDetial = async (ProjectId) => {
 };
 
 // update Projects
-// exports.updateProjectsFromDb = async (ProjectId, data) => {
-//   const result = await Project.updateOne({ _id: ProjectId }, { $set: data });
-//   return result;
-// };
+exports.updateProjectsFromDb = async (ProjectId, data) => {
+  const result = await Project.updateOne({ _id: ProjectId }, { $set: data });
+  return result;
+};
 
 // delete Projects
 exports.DeleteProjectFromdb = async (ProjectId) => {
