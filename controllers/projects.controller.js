@@ -26,14 +26,14 @@ exports.getAllProjects = async (req, res) => {
   }
 };
 
-// exports.createProject = async (req, res) => {
-//   try {
-//     const result = await createProject(req.body);
-//     res.status(201).json({ success: true });
-//   } catch (error) {
-//     res.status(400).json({ success: false, message: error.message });
-//   }
-// };
+exports.createProject = async (req, res) => {
+  try {
+    const result = await createProject(req.body);
+    res.status(201).json({ success: true });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 
 // find single Project
 // exports.getSingleProject = async (req, res, next) => {

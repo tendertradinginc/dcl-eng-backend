@@ -10,10 +10,10 @@ exports.findAllProjects = async (page, limit) => {
   return { allProjects, totlaProjects };
 };
 
-// exports.createProject = async (details) => {
-//     const result = await Project.create(details);
-//     return result;
-//   };
+exports.createProject = async (details) => {
+    const result = await Project.create(details);
+    return result;
+  };
   
 
 // get single Project for details
