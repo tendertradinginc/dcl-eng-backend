@@ -39,6 +39,7 @@ app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/projects", projectsRoute);
 app.use("/api/v1/client", clientRoute);
+app.use("/api/v1/clientFeedback", clientFeedbackRoute);
 app.use("/api/v1/category", categoryRoute);
 
 
