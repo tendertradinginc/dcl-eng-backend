@@ -34,7 +34,6 @@ exports.getAllUserFromDb = async (page, limit, search) => {
     ];
   }
 
-  console.log(query);
   const result = await User.find(query)
     .sort({ fullName: "asc" })
     .limit(parseInt(limit))
