@@ -1,9 +1,6 @@
-const {
-    createClientFeedbackinDb,
-    getAllClientFeedbackinDb,
-    deleteClientFeedbackinDb,
-    updateClientFeedbackinDb,
-} = require("../services/clientFeedback.service");
+const { createClientFeedbackinDb, getAllClientFeedbackinDb, deleteClientFeedbackinDb, updateClientFeedbackinDb } = require("../services/clientFeedback.secvice");
+
+
 
 //create Client Feedback
 exports.createClientFeedback = async (req, res) => {
