@@ -65,13 +65,13 @@ exports.getAllUser = async (req, res) => {
     const result = await getAllUserFromDb(page, limit, search);
     res.status(200).json({
       status: "success",
-      message: "Successfully get all Blogs",
+      message: "Successfully get ",
       data: result,
     });
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: "Couldn't  find any blogs",
+      message: "Couldn't  find ",
       error: error.message,
     });
   }
