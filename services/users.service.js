@@ -20,7 +20,6 @@ exports.getUserInDB = async (email, password) => {
 };
 
 exports.getAllUserFromDb = async (page, limit, search) => {
-  console.log(page, limit, search);
   const searchTerm =
     typeof search === "undefined" || search === null ? "" : search;
 
@@ -40,4 +39,12 @@ exports.getAllUserFromDb = async (page, limit, search) => {
     .skip((parseInt(page) - 1) * parseInt(limit));
   const total = await User.countDocuments(query);
   return { result, total };
+};
+exports.updateUserfromDb = async (id, data) => {
+  const result = await User.updateOne({ _id: id }, { $set: data });
+  return result;
+};
+exports.deleteUserfromDb = async (id) => {
+  const result = await User.deleteOne({ _id: id });
+  return result;
 };

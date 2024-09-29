@@ -29,13 +29,15 @@ app.use(cookieParser());
 // api link
 const usersRoute = require("./routes/v1/users.route");
 const blogRoute = require("./routes/v1/blogs.route");
+const projectsRoute = require("./routes/v1/projects.route");
 const clientRoute = require("./routes/v1/client.route");
+const clientFeedbackRoute = require("./routes/v1/clientFeedback.route");
 const categoryRoute = require("./routes/v1/category.route");
 
 // routes
-// routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
+app.use("/api/v1/projects", projectsRoute);
 app.use("/api/v1/client", clientRoute);
 app.use("/api/v1/category", categoryRoute);
 

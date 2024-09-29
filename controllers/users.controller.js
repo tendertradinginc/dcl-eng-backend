@@ -3,6 +3,8 @@ const {
   register,
   getUserInDB,
   getAllUserFromDb,
+  updateUserfromDb,
+  deleteUserfromDb,
 } = require("../services/users.service");
 const { generateToken } = require("../utils/token");
 
@@ -72,6 +74,39 @@ exports.getAllUser = async (req, res) => {
     res.status(500).json({
       status: "fail",
       message: "Couldn't  find ",
+      error: error.message,
+    });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await updateUserfromDb(id, req.body);
+    res.status(200).json({
+      status: "success",
+      message: "Successfully Updated ",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Couldn't find",
+      error: error.message,
+    });
+  }
+};
+exports.deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await deleteUserfromDb(id);
+    res.status(200).json({
+      status: "success",
+      message: "Successfully Updated ",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Couldn't find",
       error: error.message,
     });
   }
