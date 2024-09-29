@@ -30,7 +30,7 @@ exports.singleProjectDetial = async (ProjectId) => {
 // };
 
 // delete Projects
-// exports.DeleteProjectFromdb = async (ProjectId) => {
-//   const result = await Project.deleteOne({ _id: ProjectId });
-//   return result;
-// };
+exports.DeleteProjectFromdb = async (ProjectId) => {
+  const result = await Project.deleteOne({ _id: ProjectId });
+  return result;
+};

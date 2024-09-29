@@ -9,8 +9,8 @@ router.route("/create-project").post(projectController.createProject);
 
 router
   .route("/:id")
-  // .get(projectController.getSingleProject)
-  // .delete(projectController.DeleteSingleProject)
+  .get(projectController.getSingleProject)
+  .delete(projectController.DeleteSingleProject)
   // .put(projectController.updateSingleProject);
 
 module.exports = router;

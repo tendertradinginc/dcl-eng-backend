@@ -74,22 +74,22 @@ exports.getSingleProject = async (req, res, next) => {
 // };
 
 // delete single Project
-// exports.DeleteSingleProject = async (req, res, next) => {
-//   try {
-//     const { ProjectId } = req.params;
+exports.DeleteSingleProject = async (req, res, next) => {
+  try {
+    const { ProjectId } = req.params;
 
-//     const result = await DeleteProjectFromdb(ProjectId);
+    const result = await DeleteProjectFromdb(ProjectId);
 
-//     res.status(200).json({
-//       status: "success",
-//       message: "Successfully deleted Project",
-//       data: result,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       status: "fail",
-//       message: "Couldn't  find",
-//       error: error.message,
-//     });
-//   }
-// };
+    res.status(200).json({
+      status: "success",
+      message: "Successfully deleted Project",
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Couldn't  find",
+      error: error.message,
+    });
+  }
+};
