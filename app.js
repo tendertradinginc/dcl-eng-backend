@@ -30,12 +30,14 @@ app.use(cookieParser());
 const usersRoute = require("./routes/v1/users.route");
 const blogRoute = require("./routes/v1/blogs.route");
 const clientRoute = require("./routes/v1/client.route");
+const clientFeedbackRoute = require("./routes/v1/clientFeedback.route");
 
-// routes
+
 // routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/client", clientRoute);
+app.use("/api/v1/clientFeedback", clientFeedbackRoute);
 
 
 module.exports = app;
