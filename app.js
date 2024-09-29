@@ -31,10 +31,13 @@ const usersRoute = require("./routes/v1/users.route");
 const blogRoute = require("./routes/v1/blogs.route");
 const projectsRoute = require("./routes/v1/projects.route");
 
+const clientRoute = require("./routes/v1/client.route");
 
 // routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/projects", projectsRoute);
+app.use("/api/v1/client", clientRoute);
+
 
 module.exports = app;

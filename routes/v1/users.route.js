@@ -3,20 +3,10 @@ const router = express.Router();
 const userController = require("../../controllers/users.controller");
 // user create
 router.route("/createuser").post(userController.createUser);
-// http://localhost:5000/api/v1/users/createuser
-//body:
-// {
-//     "fullName":"admin",
-// "email":"admin@admin.com",
-// "password":"123456"
-// }
-router.route("/login").post(userController.getUserforlogin);
-// http://localhost:5000/api/v1/users/login
 
-//body:
-// {
-//     "email":"admin@admin.com",
-//     "password":"123456"
-//     }
+router.route("/login").post(userController.getUserforlogin);
+
+// get all user for dashboard 
+router.route("/dashboard_all_user").get(userController.getAllUser);
 
 module.exports = router;
