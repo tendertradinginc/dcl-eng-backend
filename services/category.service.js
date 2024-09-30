@@ -25,7 +25,6 @@ exports.getSingleCategoryFromdb = async (id) => {
 
 // get update categories
 exports.UpdateCategoryFromdb = async (id, data) => {
-  console.log(id, data);
   const result = await Categories.updateOne({ _id: id }, { $set: data });
   return result;
 };

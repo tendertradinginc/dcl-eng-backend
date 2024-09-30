@@ -10,7 +10,6 @@ const {
 
 exports.createCategories = async (req, res, next) => {
   try {
-    console.log(req.body);
     const result = await createCategoriesDb(req.body);
 
     res.status(200).json({

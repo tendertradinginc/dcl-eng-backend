@@ -6,8 +6,6 @@ const {
   findAllProjects,
 } = require("../services/projects.service");
 
-
-
 exports.getAllProjects = async (req, res) => {
   try {
     const { page, limit, searchValue } = req.query;
@@ -59,7 +57,7 @@ exports.getSingleProject = async (req, res, next) => {
 exports.updateSingleProject = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id)
+
     const result = await updateProjectsFromDb(id, req.body);
     res.status(200).json({
       status: "success",
@@ -78,7 +76,6 @@ exports.updateSingleProject = async (req, res) => {
 exports.DeleteSingleProject = async (req, res, next) => {
   try {
     const { id } = req.params;
-    
 
     const result = await DeleteProjectFromdb(id);
 
