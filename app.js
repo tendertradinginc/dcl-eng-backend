@@ -42,6 +42,6 @@ app.use("/api/v1/projects", projectsRoute);
 app.use("/api/v1/client", clientRoute);
 app.use("/api/v1/clientFeedback", clientFeedbackRoute);
 app.use("/api/v1/category", categoryRoute);
-app.use("/api/v1/successStoryRoute", successStoryRoute);
+app.use("/api/v1/successStory", successStoryRoute);
 
 module.exports = app;
