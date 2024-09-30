@@ -38,7 +38,6 @@ const messageRoute = require("./routes/v1/message.route");
 
 const successStoryRoute = require("./routes/v1/successStory.route");
 
-
 // routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
@@ -50,6 +49,5 @@ app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/message", messageRoute);
 
 app.use("/api/v1/successStoryRoute", successStoryRoute);
-
 
 module.exports = app;
