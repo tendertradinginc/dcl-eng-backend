@@ -10,8 +10,8 @@ const {
 
 exports.getAllProjects = async (req, res) => {
   try {
-    const { page, limit } = req.query;
-    const result = await findAllProjects(page, limit);
+    const { page, limit, searchValue } = req.query;
+    const result = await findAllProjects(page, limit, searchValue);
     res.status(200).json({
       status: "success",
       message: "Successfully get all Projects",
@@ -58,8 +58,9 @@ exports.getSingleProject = async (req, res, next) => {
 // update Projects
 exports.updateSingleProject = async (req, res) => {
   try {
-    const { ProjectId } = req.params;
-    const result = await updateProjectsFromDb(ProjectId, req.body);
+    const { id } = req.params;
+    console.log(id)
+    const result = await updateProjectsFromDb(id, req.body);
     res.status(200).json({
       status: "success",
       message: "Successfully Updated the Project",
@@ -76,9 +77,10 @@ exports.updateSingleProject = async (req, res) => {
 // delete single Project
 exports.DeleteSingleProject = async (req, res, next) => {
   try {
-    const { ProjectId } = req.params;
+    const { id } = req.params;
+    
 
-    const result = await DeleteProjectFromdb(ProjectId);
+    const result = await DeleteProjectFromdb(id);
 
     res.status(200).json({
       status: "success",

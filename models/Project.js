@@ -34,6 +34,7 @@ const ProjectSchema = mongoose.Schema(
     status: {
       type: Boolean,
       required: true,
+      default:false
     },
     location: {
       type: String,

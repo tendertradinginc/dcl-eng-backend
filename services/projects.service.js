@@ -1,8 +1,16 @@
 const Project = require("../models/Project");
 
-
-exports.findAllProjects = async (page, limit) => {
-  const allProjects = await Project.find()
+exports.findAllProjects = async (page, limit, searchQueryValue) => {
+  const searchValue = searchQueryValue == "undefined" ? "" : searchQueryValue;
+  const regexSearch = new RegExp(searchValue, "i");
+  const query = {
+    $or: [
+      { name: { $regex: regexSearch } },
+      { description: { $regex: regexSearch } },
+      { shortDescription: { $regex: regexSearch } },
+    ],
+  };
+  const allProjects = await Project.find(query)
     .sort({ name: "asc" })
     .limit(parseInt(limit))
     .skip((parseInt(page) - 1) * parseInt(limit));
@@ -11,10 +19,9 @@ exports.findAllProjects = async (page, limit) => {
 };
 
 exports.createProject = async (details) => {
-    const result = await Project.create(details);
-    return result;
-  };
-  
+  const result = await Project.create(details);
+  return result;
+};
 
 // get single Project for details
 
@@ -26,6 +33,7 @@ exports.singleProjectDetial = async (ProjectId) => {
 // update Projects
 exports.updateProjectsFromDb = async (ProjectId, data) => {
   const result = await Project.updateOne({ _id: ProjectId }, { $set: data });
+
   return result;
 };
 
