@@ -8,7 +8,7 @@ const {
   getAllCategoriesDashboardEdition,
 } = require("../services/category.service");
 
-exports.createCategories = async (req, res, next) => {
+exports.createCategories = async (req, res) => {
   try {
     console.log(req.body);
     const result = await createCategoriesDb(req.body);
