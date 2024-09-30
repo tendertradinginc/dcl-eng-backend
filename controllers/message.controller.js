@@ -24,9 +24,9 @@ exports.postContactUsMsg = async (req, res, next) => {
 };
 exports.getAllContactUsMsg = async (req, res, next) => {
   try {
-    const { page, limit } = req.query;
+    const { page, limit, search } = req.query;
 
-    const contactUsmsg = await getAllContactUsMsgsDb(page, limit);
+    const contactUsmsg = await getAllContactUsMsgsDb(page, limit, search);
     res.status(200).json({
       status: "success",
       data: contactUsmsg,
