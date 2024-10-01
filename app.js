@@ -37,6 +37,7 @@ const categoryRoute = require("./routes/v1/category.route");
 const messageRoute = require("./routes/v1/message.route");
 
 const successStoryRoute = require("./routes/v1/successStory.route");
+const serviceRoute = require("./routes/v1/service.route");
 
 // routes
 app.use("/api/v1/users", usersRoute);
@@ -45,11 +46,9 @@ app.use("/api/v1/projects", projectsRoute);
 app.use("/api/v1/client", clientRoute);
 app.use("/api/v1/clientFeedback", clientFeedbackRoute);
 app.use("/api/v1/category", categoryRoute);
-
-
 app.use("/api/v1/message", messageRoute);
+app.use("/api/v1/service", serviceRoute);
 
 app.use("/api/v1/successStoryRoute", successStoryRoute);
-
 
 module.exports = app;
