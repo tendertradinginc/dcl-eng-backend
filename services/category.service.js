@@ -2,8 +2,15 @@ const Categories = require("../models/Category");
 
 // create single category
 exports.createCategoriesDb = async (details) => {
-  const result = await Categories.create(details);
-  return result;
+  console.log('createCategoriesDb called with details:', details);
+  try {
+    const result = await Categories.create(details);
+    console.log('Category created successfully:', result);
+    return result;
+  } catch (error) {
+    console.error('Error creating category:', error);
+    throw error;
+  }
 };
 
 // get all categories

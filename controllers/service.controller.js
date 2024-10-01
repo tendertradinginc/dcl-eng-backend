@@ -27,11 +27,17 @@ exports.createService = async (req, res) => {
 
 exports.getAllServices = async (req, res) => {
   try {
-    const result = await getAllServicesFromDb();
+    const { page = 1, limit = 10, search } = req.query;
+    const { result, metadata } = await getAllServicesFromDb(
+      page,
+      limit,
+      search
+    );
     res.status(200).json({
       status: "success",
-      message: "Successfully retrieved all services",
+      message: "Successfully retrieved services",
       data: result,
+      metadata,
     });
   } catch (error) {
     res.status(500).json({
