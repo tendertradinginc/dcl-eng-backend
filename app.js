@@ -49,7 +49,7 @@ app.use("/api/v1/category", categoryRoute);
 
 app.use("/api/v1/message", messageRoute);
 
-app.use("/api/v1/successStoryRoute", successStoryRoute);
+app.use("/api/v1/successStory", successStoryRoute);
 
 
 module.exports = app;
