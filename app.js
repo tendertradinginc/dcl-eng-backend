@@ -33,12 +33,10 @@ const projectsRoute = require("./routes/v1/projects.route");
 const clientRoute = require("./routes/v1/client.route");
 const clientFeedbackRoute = require("./routes/v1/clientFeedback.route");
 const categoryRoute = require("./routes/v1/category.route");
-
 const messageRoute = require("./routes/v1/message.route");
-
 const successStoryRoute = require("./routes/v1/successStory.route");
 const serviceRoute = require("./routes/v1/service.route");
-
+const teamMemberRoute = require("./routes/v1/teamMember.route");
 // routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
@@ -48,7 +46,7 @@ app.use("/api/v1/clientFeedback", clientFeedbackRoute);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/message", messageRoute);
 app.use("/api/v1/service", serviceRoute);
-
 app.use("/api/v1/successStory", successStoryRoute);
+app.use("/api/v1/teamMember", teamMemberRoute);
 
 module.exports = app;
