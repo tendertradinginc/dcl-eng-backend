@@ -23,13 +23,23 @@ exports.getAllServicesFromDb = async (page, limit, search) => {
       ];
     }
 
+    const pageNumber = parseInt(page);
+    const limitNumber = parseInt(limit);
+
     const result = await Service.find(query)
       .sort({ name: "asc" })
-      .limit(parseInt(limit))
-      .skip((parseInt(page) - 1) * parseInt(limit))
-      .populate("category");
+      .limit(limitNumber)
+      .skip((pageNumber - 1) * limitNumber);
     const total = await Service.countDocuments(query);
-    return { result, total };
+
+    const metadata = {
+      total,
+      page: pageNumber,
+      limit: limitNumber,
+      totalPages: Math.ceil(total / limitNumber),
+    };
+
+    return { result, metadata };
   } catch (error) {
     throw new Error(`Failed to get all services: ${error.message}`);
   }
