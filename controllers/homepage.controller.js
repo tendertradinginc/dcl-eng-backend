@@ -1,3 +1,5 @@
+const { getAllSummaryfromDb } = require("../services/homepage.service");
+
 exports.getAllSummary = async (req, res) => {
   try {
     const {} = req.query;

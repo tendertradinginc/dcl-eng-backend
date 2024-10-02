@@ -7,8 +7,8 @@ router.route("/create").post(successStoryController.createSuccessStory);
 router.route("/").get(successStoryController.getAllSuccessStory);
 
 router
-    .route("/:id")
-    .delete(successStoryController.deleteSuccessStory)
-    .put(successStoryController.updateSuccessStory);
+  .route("/:id")
+  .delete(successStoryController.deleteSuccessStory)
+  .put(successStoryController.updateSuccessStory);
 
 module.exports = router;
