@@ -5,8 +5,16 @@ exports.createBlog = async (details) => {
   return result;
 };
 
-exports.findAllBlogs = async (page, limit) => {
-  const allBlogs = await Blog.find()
+exports.findAllBlogs = async (page, limit, searchQueryValue) => {
+  const searchValue = searchQueryValue == "undefined" ? "" : searchQueryValue;
+  const regexSearch = new RegExp(searchValue, "i");
+  const query = {
+    $or: [
+      { title: { $regex: regexSearch } },
+      { category: { $regex: regexSearch } },
+    ],
+  };
+  const allBlogs = await Blog.find(query)
     .sort({ name: "asc" })
     .limit(parseInt(limit))
     .skip((parseInt(page) - 1) * parseInt(limit));
