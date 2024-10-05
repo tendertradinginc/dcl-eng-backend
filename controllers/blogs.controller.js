@@ -8,8 +8,8 @@ const {
   
 exports.getAllBlogs = async (req, res) => {
     try {
-      const { page, limit } = req.query;
-      const result = await findAllBlogs(page, limit);
+      const { page, limit, searchValue } = req.query;
+      const result = await findAllBlogs(page, limit, searchValue);
       res.status(200).json({
         status: "success",
         message: "Successfully get all Blogs",
