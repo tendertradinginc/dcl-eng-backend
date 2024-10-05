@@ -21,7 +21,6 @@ exports.getAllSummary = async (req, res) => {
 };
 exports.getAllBanner = async (req, res) => {
   try {
-    console.log("object");
     const result = await getAllBannerFromDb();
     res.status(200).json({
       status: "success",
