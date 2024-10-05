@@ -38,6 +38,7 @@ const successStoryRoute = require("./routes/v1/successStory.route");
 const serviceRoute = require("./routes/v1/service.route");
 const teamMemberRoute = require("./routes/v1/teamMember.route");
 const homepageRoute = require("./routes/v1/homepage.route");
+const bannerRoute = require("./routes/v1/banner.route");
 // routes
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/blogs", blogRoute);
@@ -50,5 +51,6 @@ app.use("/api/v1/service", serviceRoute);
 app.use("/api/v1/successStory", successStoryRoute);
 app.use("/api/v1/teamMember", teamMemberRoute);
 app.use("/api/v1/homepage", homepageRoute);
+app.use("/api/v1/bannerpage", bannerRoute);
 
 module.exports = app;
