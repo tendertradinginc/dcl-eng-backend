@@ -1,11 +1,11 @@
 const {
   createCategoriesDb,
-  getAllCategoriesFromdb,
   getSingleCategoryFromdb,
   UpdateCategoryFromdb,
   DeleteCategoryFromdb,
   changeCategoryStatus,
   getAllCategoriesDashboardEdition,
+  getAllCategoriesFromDb,
 } = require("../services/category.service");
 
 exports.createCategories = async (req, res) => {
@@ -26,19 +26,25 @@ exports.createCategories = async (req, res) => {
   }
 };
 
-exports.getAllCategories = async (req, res, next) => {
+exports.getAllCategories = async (req, res) => {
   try {
-    const result = await getAllCategoriesFromdb();
+    const { page = 1, limit = 10, search } = req.query;
+    const { result, metadata } = await getAllCategoriesFromDb(
+      page,
+      limit,
+      search
+    );
 
     res.status(200).json({
       status: "success",
-      message: "Successfully Create categories",
+      message: "Successfully retrieved categories",
       data: result,
+      metadata,
     });
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: "Couldn't  create categories",
+      message: "Couldn't retrieve categories",
       error: error.message,
     });
   }
