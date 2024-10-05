@@ -35,6 +35,10 @@ const BannerSchema = mongoose.Schema(
     },
     buttonText: {
       type: String,
+      default: "View Details",
+    },
+    buttonLink: {
+      type: String,
       default: "/services",
     },
     location: {

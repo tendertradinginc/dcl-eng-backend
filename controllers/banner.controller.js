@@ -73,9 +73,9 @@ exports.updateSingleBanner = async (req, res) => {
 // delete single blog
 exports.DeleteSingleBanner = async (req, res, next) => {
   try {
-    const { blogId } = req.params;
+    const { bannerId } = req.params;
 
-    const result = await DeleteSingleBannerFromDb(blogId);
+    const result = await DeleteSingleBannerFromDb(bannerId);
 
     res.status(200).json({
       status: "success",
