@@ -13,8 +13,8 @@ exports.createCategoriesDb = async (details) => {
   }
 };
 
-// get all categories
-exports.getAllCategoriesFromDb = async (page, limit, search) => {
+// get all categories dashboard
+exports.getAllCategoriesDashboardEdition = async (page, limit, search) => {
   try {
     const searchTerm = search || "";
     const regexSearch = new RegExp(searchTerm, "i");
@@ -46,10 +46,35 @@ exports.getAllCategoriesFromDb = async (page, limit, search) => {
   }
 };
 
-// get all categories dashboard
-exports.getAllCategoriesDashboardEdition = async () => {
-  const result = await Categories.find({ status: true }).sort({ name: "asc" });
-  return result;
+// get all categories
+exports.getAllCategoriesFromDb = async (page, limit, featured) => {
+  try {
+    const pageNumber = parseInt(page) || 1;
+    const limitNumber = parseInt(limit) || 10;
+
+    let query = {};
+    if (featured !== undefined) {
+      query.featuredStatus = featured;
+    }
+
+    const result = await Categories.find(query)
+      .sort({ name: "asc" })
+      .limit(limitNumber)
+      .skip((pageNumber - 1) * limitNumber);
+
+    const total = await Categories.countDocuments(query);
+
+    const metadata = {
+      total,
+      page: pageNumber,
+      limit: limitNumber,
+      totalPages: Math.ceil(total / limitNumber),
+    };
+
+    return { result, metadata };
+  } catch (error) {
+    throw new Error(`Failed to get all categories: ${error.message}`);
+  }
 };
 
 exports.getSingleCategoryFromdb = async (id) => {

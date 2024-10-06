@@ -9,6 +9,10 @@ const CategorySchema = mongoose.Schema(
       unique: true,
     },
 
+    shortDescription: {
+      type: String,
+    },
+
     img: {
       type: String,
       validate: {
@@ -24,9 +28,9 @@ const CategorySchema = mongoose.Schema(
       required: true,
     },
 
-    FeaturedStatus: {
+    featuredStatus: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   {
