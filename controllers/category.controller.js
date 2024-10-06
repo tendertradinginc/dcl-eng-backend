@@ -26,10 +26,10 @@ exports.createCategories = async (req, res) => {
   }
 };
 
-exports.getAllCategories = async (req, res) => {
+exports.getAllCategoriesDashboard = async (req, res) => {
   try {
     const { page = 1, limit = 10, search } = req.query;
-    const { result, metadata } = await getAllCategoriesFromDb(
+    const { result, metadata } = await getAllCategoriesDashboardEdition(
       page,
       limit,
       search
@@ -50,19 +50,25 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
-exports.getAllCategoriesDashboard = async (req, res) => {
+exports.getAllCategories = async (req, res) => {
   try {
-    const result = await getAllCategoriesDashboardEdition();
+    const { page = 1, limit = 10, featured } = req.query;
+    const { result, metadata } = await getAllCategoriesFromDb(
+      page,
+      limit,
+      featured
+    );
 
     res.status(200).json({
       status: "success",
-      message: "Successfully Create categories",
+      message: "Successfully retrieved categories",
       data: result,
+      metadata,
     });
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      message: "Couldn't  create categories",
+      message: "Couldn't retrieve categories",
       error: error.message,
     });
   }
