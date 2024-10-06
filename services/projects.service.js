@@ -2,12 +2,12 @@ const Project = require("../models/Project");
 
 exports.findAllProjects = async (page, limit, searchQueryValue) => {
   const searchValue = searchQueryValue == "undefined" ? "" : searchQueryValue;
+
   const regexSearch = new RegExp(searchValue, "i");
   const query = {
     $or: [
       { name: { $regex: regexSearch } },
-      { description: { $regex: regexSearch } },
-      { shortDescription: { $regex: regexSearch } },
+      
     ],
   };
   const allProjects = await Project.find(query)
