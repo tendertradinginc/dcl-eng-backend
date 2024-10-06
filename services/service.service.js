@@ -9,42 +9,6 @@ exports.createServiceDb = async (details) => {
   }
 };
 
-exports.getAllServicesFromDb = async (page, limit, search) => {
-  try {
-    const searchTerm =
-      typeof search === "undefined" || search === null ? "" : search;
-    const regexSearch = new RegExp(searchTerm, "i");
-    let query = {};
-    if (searchTerm) {
-      query.$or = [
-        { name: { $regex: regexSearch } },
-        { shortDescription: { $regex: regexSearch } },
-        { fullDescription: { $regex: regexSearch } },
-      ];
-    }
-
-    const pageNumber = parseInt(page);
-    const limitNumber = parseInt(limit);
-
-    const result = await Service.find(query)
-      .sort({ name: "asc" })
-      .limit(limitNumber)
-      .skip((pageNumber - 1) * limitNumber);
-    const total = await Service.countDocuments(query);
-
-    const metadata = {
-      total,
-      page: pageNumber,
-      limit: limitNumber,
-      totalPages: Math.ceil(total / limitNumber),
-    };
-
-    return { result, metadata };
-  } catch (error) {
-    throw new Error(`Failed to get all services: ${error.message}`);
-  }
-};
-
 exports.getAllServicesDashboardEdition = async () => {
   try {
     const result = await Service.find({ featuredStatus: true })
@@ -106,5 +70,26 @@ exports.changeServiceFeaturedStatus = async ({ id }) => {
     throw new Error(
       `Failed to change service featured status: ${error.message}`
     );
+  }
+};
+
+exports.getAllServicesCategoryWiseFromDb = async (category, page, limit) => {
+  try {
+    const skip = (page - 1) * limit;
+    const totalCount = await Service.countDocuments({ category: category });
+    const result = await Service.find({ category: category })
+      .skip(skip)
+      .limit(parseInt(limit));
+
+    const metadata = {
+      totalCount,
+      currentPage: parseInt(page),
+      totalPages: Math.ceil(totalCount / limit),
+      limit: parseInt(limit),
+    };
+
+    return { result, metadata };
+  } catch (error) {
+    throw new Error(`Failed to get services category wise: ${error.message}`);
   }
 };

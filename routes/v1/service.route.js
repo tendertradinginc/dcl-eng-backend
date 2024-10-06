@@ -11,6 +11,10 @@ router
   .route("/get-all-dashboard-edition")
   .get(servicesController.getAllServicesDashboard);
 
+router
+  .route("/category-wise")
+  .get(servicesController.getAllServicesCategoryWise);
+
 router.route("/toggle-featured").get(servicesController.toggleServiceFeatured);
 
 router

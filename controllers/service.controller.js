@@ -6,6 +6,7 @@ const {
   deleteServiceFromDb,
   changeServiceFeaturedStatus,
   getAllServicesDashboardEdition,
+  getAllServicesCategoryWiseFromDb,
 } = require("../services/service.service");
 
 exports.createService = async (req, res) => {
@@ -132,6 +133,26 @@ exports.toggleServiceFeatured = async (req, res) => {
     res.status(500).json({
       status: "fail",
       message: "Couldn't change service featured status",
+      error: error.message,
+    });
+  }
+};
+
+exports.getAllServicesCategoryWise = async (req, res) => {
+  try {
+    const { category, page = 1, limit = 10 } = req.query;
+    console.log(category);
+    const {result, metadata} = await getAllServicesCategoryWiseFromDb(category, page, limit);
+    res.status(200).json({
+      status: "success",
+      message: "Successfully retrieved services",
+      data: result,
+      metadata,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Couldn't retrieve services",
       error: error.message,
     });
   }
