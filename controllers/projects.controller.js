@@ -36,9 +36,8 @@ exports.createProject = async (req, res) => {
 // find single Project
 exports.getSingleProject = async (req, res, next) => {
   try {
-    const { ProjectId } = req.params;
-
-    const result = await singleProjectDetial(ProjectId);
+    const { id } = req.params;
+    const result = await singleProjectDetial(id);
     res.status(200).json({
       status: "success",
       message: "Successfully find the Project ",
