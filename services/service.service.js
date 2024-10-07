@@ -9,12 +9,66 @@ exports.createServiceDb = async (details) => {
   }
 };
 
-exports.getAllServicesDashboardEdition = async () => {
+exports.getAllServicesFromDb = async (page, limit, search) => {
   try {
-    const result = await Service.find({ featuredStatus: true })
+    const searchTerm =
+      typeof search === "undefined" || search === null ? "" : search;
+    const regexSearch = new RegExp(searchTerm, "i");
+    let query = {};
+    if (searchTerm) {
+      query.$or = [
+        { name: { $regex: regexSearch } },
+        { shortDescription: { $regex: regexSearch } },
+        { fullDescription: { $regex: regexSearch } },
+      ];
+    }
+    const pageNumber = parseInt(page);
+    const limitNumber = parseInt(limit);
+    const result = await Service.find(query)
       .sort({ name: "asc" })
-      .populate("category");
-    return result;
+      .limit(limitNumber)
+      .skip((pageNumber - 1) * limitNumber);
+    const total = await Service.countDocuments(query);
+    const metadata = {
+      total,
+      page: pageNumber,
+      limit: limitNumber,
+      totalPages: Math.ceil(total / limitNumber),
+    };
+    return { result, metadata };
+  } catch (error) {
+    throw new Error(`Failed to get all services: ${error.message}`);
+  }
+};
+
+exports.getAllServicesDashboardEdition = async (page, limit, search) => {
+  try {
+    const searchTerm =
+      typeof search === "undefined" || search === null ? "" : search;
+    const regexSearch = new RegExp(searchTerm, "i");
+    let query = {};
+    if (searchTerm) {
+      query.$or = [
+        { name: { $regex: regexSearch } },
+        { shortDescription: { $regex: regexSearch } },
+        { fullDescription: { $regex: regexSearch } },
+      ];
+    }
+    const pageNumber = parseInt(page);
+    const limitNumber = parseInt(limit);
+    const result = await Service.find(query)
+      .sort({ name: "asc" })
+      .populate("category")
+      .limit(limitNumber)
+      .skip((pageNumber - 1) * limitNumber);
+    const total = await Service.countDocuments(query);
+    const metadata = {
+      total,
+      page: pageNumber,
+      limit: limitNumber,
+      totalPages: Math.ceil(total / limitNumber),
+    };
+    return { result, metadata };
   } catch (error) {
     throw new Error(`Failed to get dashboard services: ${error.message}`);
   }
