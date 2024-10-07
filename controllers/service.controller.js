@@ -141,8 +141,12 @@ exports.toggleServiceFeatured = async (req, res) => {
 exports.getAllServicesCategoryWise = async (req, res) => {
   try {
     const { category, page = 1, limit = 10 } = req.query;
-    console.log(category);
-    const {result, metadata} = await getAllServicesCategoryWiseFromDb(category, page, limit);
+
+    const { result, metadata } = await getAllServicesCategoryWiseFromDb(
+      category,
+      page,
+      limit
+    );
     res.status(200).json({
       status: "success",
       message: "Successfully retrieved services",

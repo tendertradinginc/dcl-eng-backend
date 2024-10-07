@@ -6,7 +6,11 @@ const mongoose = require("mongoose");
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [
+      "http://localhost:3000",
+      "https://dcl-eng-frontend.vercel.app",
+      "https://www.dcl-eng-frontend.vercel.app",
+    ],
 
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
     allowedHeaders: [
