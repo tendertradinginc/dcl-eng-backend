@@ -51,11 +51,17 @@ exports.getAllServices = async (req, res) => {
 
 exports.getAllServicesDashboard = async (req, res) => {
   try {
-    const result = await getAllServicesDashboardEdition();
+    const { page = 1, limit = 10, search } = req.query;
+    const { result, metadata } = await getAllServicesDashboardEdition(
+      page,
+      limit,
+      search
+    );
     res.status(200).json({
       status: "success",
       message: "Successfully retrieved dashboard services",
       data: result,
+      metadata,
     });
   } catch (error) {
     res.status(500).json({
